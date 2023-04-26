@@ -3,13 +3,8 @@
     <div class="container">
       <div class="nav" ref="dataNavList">
         <div class="classfication">{{ $t("index.tar.more33") }}</div>
-        <span
-          :class="{ active: currentIndex == index }"
-          v-for="(item, index) in top_category"
-          :key="index"
-          @click="handleClick(index)"
-          >{{ item.name }}</span
-        >
+        <span :class="{ active: currentIndex == index }" v-for="(item, index) in top_category" :key="index"
+          @click="handleClick(index)">{{ item.name }}</span>
       </div>
 
       <!-- 切换面板 -->
@@ -20,9 +15,8 @@
               <!-- 商品轮播 -->
               <div class="banner">
                 <swiper class="top-banner" :options="swiperOptions">
-                  <swiper-slide v-for="(item, index) in banner" :key="index"
-                    ><img :src="item.image" alt=""
-                  /></swiper-slide>
+                  <swiper-slide v-for="(item, index) in banner" :key="index"><img :src="item.image"
+                      alt="" /></swiper-slide>
                 </swiper>
               </div>
               <!-- 商品轮播 -->
@@ -60,12 +54,8 @@
 
                 <div class="launch">
                   <div class="new xinp">
-                    <span
-                      class="xinp"
-                      :class="{ active: isactive }"
-                      @click="changeMenu(1)"
-                      >{{ $t("index.home.more45") }}</span
-                    >
+                    <span class="xinp" :class="{ active: isactive }"
+                      @click="changeMenu(1)">{{ $t("index.home.more45") }}</span>
                     <span class="division"></span>
                     <span class="jinbao" @click="changeMenu(2)">{{
                       $t("index.home.more65")
@@ -79,16 +69,11 @@
                   </div>
                   <div>
                     <div class="pic-content">
-                      <div
-                        class="pic"
-                        v-for="(item, index) in ProductInsideLeft"
-                        :key="index"
-                      >
-                        <img :src="item.image" alt="" />
+                      <div class="pic" v-for="(item, index) in ProductInsideLeft" :key="index">
+                        <!-- <img :src="item.image" alt="" /> -->
+                        <el-image :src="item.image" lazy></el-image>
                         <span class="price">特卖价</span>
-                        <span class="del-price"
-                          ><span class="unit">KD:</span>1258</span
-                        >
+                        <span class="del-price"><span class="unit">KD:</span>1258</span>
                       </div>
                     </div>
                   </div>
@@ -98,12 +83,8 @@
 
                 <div class="launch">
                   <div class="new">
-                    <span
-                      class="hot"
-                      :class="{ active: isactive }"
-                      @click="updateMenu(3)"
-                      >{{ $t("index.home.more47") }}</span
-                    >
+                    <span class="hot" :class="{ active: isactive }"
+                      @click="updateMenu(3)">{{ $t("index.home.more47") }}</span>
                     <span class="division"></span>
                     <span class="jinbao" @click="updateMenu(4)">{{
                       $t("index.home.more61")
@@ -113,13 +94,9 @@
                     }}</a>
                   </div>
                   <div class="pic-content">
-                    <div
-                      class="pic2"
-                      v-for="(item, index) in ProductInsideRight"
-                      :key="index"
-                    >
-                      <img :src="item.image" alt="" />
-
+                    <div class="pic2" v-for="(item, index) in ProductInsideRight" :key="index">
+                      <!-- <img :src="item.image" alt="" /> -->
+                      <el-image :src="item.image" lazy></el-image>
                       <div class="re">
                         <div class="re1">热度Top1</div>
                         <div class="re2">沙发套餐</div>
@@ -141,16 +118,15 @@
                 <img src="" alt="" />
               </div>
               <div class="box">
-                <div
-                  class="content"
-                  v-for="(item, index) in category"
-                  :key="index"
-                >
+                <div class="content" v-for="item in limitList" :key="item.id">
                   <div class="time-down">下架倒计时</div>
                   <div class="time">00：00：00</div>
-                  <div><img :src="item.image" /></div>
+                  <el-image :src="item.image" lazy>
+                    <div slot="placeholder" class="image-slot">
+                      加载中<span class="dot">...</span>
+                    </div>
+                  </el-image>
                   <div class="center">特卖价 kd200</div>
-
                   <div class="limit">限量抢，抢完恢复kd200</div>
                   <div class="title">{{ item.goods_name }}</div>
                   <div class="score">
@@ -167,52 +143,26 @@
                     立即抢购
                   </div>
                 </div>
-                <div class="content">
-                  <div class="time-down">下架倒计时</div>
-                  <div class="time">00：00：00</div>
-                  <div><img /></div>
-                  <div class="center">特卖价 kd168</div>
-
-                  <div class="limit">限量抢，抢完恢复kd200</div>
-                  <div class="title">Modern MINIMALIST</div>
-                  <div class="score">
-                    <div class="start">
-                      <img src="../assets/images/redstart.png" />
-                      <img src="../assets/images/redstart.png" alt="" />
-                      <img src="../assets/images/redstart.png" alt="" />
-                      <img src="../assets/images/redstart.png" alt="" />
-                      <img src="../assets/images/redstart.png" alt="" />
-                    </div>
-                    <img src="../assets/images/shoucan.png" alt="" />
-                  </div>
-                  <div class="button">立即抢购</div>
-                </div>
-              
               </div>
-              <pagination :total="category.length"
-                  :limit="limit"
-                  @page-change="pageChange"
-                  :page="page"></pagination>
+              <div class="pagination">
+                <el-pagination @current-change="pageChange" :current-page.sync="curPage" :page-size="pageSize"
+                  layout="prev, pager, next, jumper" :total="total">
+                </el-pagination>
+              </div>
             </div>
 
             <!-- 第五层家具专场 -->
             <div class="furniture">
               <div>
-                <span class="fur">家具专场</span
-                ><a href="/" class="more">查看更多</a>
+                <span class="fur">家具专场</span><a href="/" class="more">查看更多</a>
               </div>
               <div class="photo"><img /></div>
 
               <div class="cfx">
-                <div
-                  class="ctx"
-                  v-for="(item, index) in category.slice(6, 11)"
-                  :key="index"
-                >
+                <div class="ctx" v-for="(item, index) in category.slice(6, 11)" :key="index">
                   <div class="img"><img :src="item.image" /></div>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">{{ item.goods_name }}</div>
                   <div class="score">
@@ -230,8 +180,7 @@
                 <div class="ctx">
                   <div class="img"><img /></div>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">modernist munifnfnfn</div>
                   <div class="score">
@@ -249,8 +198,7 @@
                 <div class="ctx">
                   <div class="img"><img /></div>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">modernist munifnfnfn</div>
                   <div class="score">
@@ -263,7 +211,7 @@
                     </div>
                     <img src="../assets/images/cel_shoucan.png" alt="" />
                   </div>
-                  <div class="button"  @click="jumpDetail(item.id)">加入购物车</div>
+                  <div class="button" @click="jumpDetail(item.id)">加入购物车</div>
                 </div>
               </div>
             </div>
@@ -271,21 +219,15 @@
             <!-- 第六层厨具专场 -->
             <div class="furniture">
               <div>
-                <span class="fur">厨具专场</span
-                ><a href="/" class="more">查看更多</a>
+                <span class="fur">厨具专场</span><a href="/" class="more">查看更多</a>
               </div>
               <div class="photo"><img /></div>
 
               <div class="cfx">
-                <div
-                  class="ctx"
-                  v-for="(item, index) in category.slice(6, 11)"
-                  :key="index"
-                >
+                <div class="ctx" v-for="(item, index) in category.slice(6, 11)" :key="index">
                   <div class="img"><img :src="item.image" /></div>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">modernist munifnfnfn</div>
                   <div class="score">
@@ -307,21 +249,16 @@
 
             <div class="furniture">
               <div>
-                <span class="fur">猜你喜欢</span
-                ><a href="/" class="more">查看更多</a>
+                <span class="fur">猜你喜欢</span><a href="/" class="more">查看更多</a>
               </div>
               <div class="photo"><img /></div>
 
               <div class="cfx">
-                <div
-                  class="ctx"
-                  v-for="(item, index) in category.slice(12, 14)"
-                  :key="index"
-                >
-                  <div class="img"><img img :src="item.image" /></div>
+                <div class="ctx" v-for="(item, index) in category.slice(12, 14)" :key="index">
+                  <!-- <div class="img"><img img :src="item.image" /></div> -->
+                  <el-image :src="item.image" lazy></el-image>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">modernist munifnfnfn</div>
                   <div class="score">
@@ -339,8 +276,7 @@
                 <div class="ctx">
                   <div class="img"><img /></div>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">modernist munifnfnfn</div>
                   <div class="score">
@@ -358,8 +294,7 @@
                 <div class="ctx">
                   <div class="img"><img /></div>
                   <div class="price">
-                    <span class="sales">特卖价</span
-                    ><span class="unit">kd:</span><span class="ju">200:00</span>
+                    <span class="sales">特卖价</span><span class="unit">kd:</span><span class="ju">200:00</span>
                   </div>
                   <div class="title">modernist munifnfnfn</div>
                   <div class="score">
@@ -390,8 +325,7 @@
             <div class="item">
               <div><img src="" alt="" /></div>
               <div>
-                <span class="unit">kd </span
-                ><span class="price"> item.price </span>
+                <span class="unit">kd </span><span class="price"> item.price </span>
               </div>
               <div class="title">item.goods_name</div>
 
@@ -404,8 +338,7 @@
                   <img src="../assets/images/redstart.png" alt="" />
                 </span>
                 <span class="wuj">
-                  <img src="../assets/images/cel_shoucan.png" alt=""
-                /></span>
+                  <img src="../assets/images/cel_shoucan.png" alt="" /></span>
               </div>
 
               <div class="button">立即购买</div>
@@ -414,8 +347,7 @@
             <div class="item">
               <div><img src="" alt="" /></div>
               <div>
-                <span class="unit">kd </span
-                ><span class="price"> item.price </span>
+                <span class="unit">kd </span><span class="price"> item.price </span>
               </div>
               <div class="title">item.goods_name</div>
 
@@ -428,8 +360,7 @@
                   <img src="../assets/images/redstart.png" alt="" />
                 </span>
                 <span class="wuj">
-                  <img src="../assets/images/cel_shoucan.png" alt=""
-                /></span>
+                  <img src="../assets/images/cel_shoucan.png" alt="" /></span>
               </div>
 
               <div class="button">立即购买</div>
@@ -438,8 +369,7 @@
             <div class="item">
               <div><img src="" alt="" /></div>
               <div>
-                <span class="unit">kd </span
-                ><span class="price"> item.price </span>
+                <span class="unit">kd </span><span class="price"> item.price </span>
               </div>
               <div class="title">item.goods_name</div>
 
@@ -452,8 +382,7 @@
                   <img src="../assets/images/redstart.png" alt="" />
                 </span>
                 <span class="wuj">
-                  <img src="../assets/images/cel_shoucan.png" alt=""
-                /></span>
+                  <img src="../assets/images/cel_shoucan.png" alt="" /></span>
               </div>
 
               <div class="button">立即购买</div>
@@ -462,8 +391,7 @@
             <div class="item">
               <div><img src="" alt="" /></div>
               <div>
-                <span class="unit">kd </span
-                ><span class="price"> item.price </span>
+                <span class="unit">kd </span><span class="price"> item.price </span>
               </div>
               <div class="title">item.goods_name</div>
 
@@ -476,8 +404,7 @@
                   <img src="../assets/images/redstart.png" alt="" />
                 </span>
                 <span class="wuj">
-                  <img src="../assets/images/cel_shoucan.png" alt=""
-                /></span>
+                  <img src="../assets/images/cel_shoucan.png" alt="" /></span>
               </div>
 
               <div class="button">立即购买</div>
@@ -486,8 +413,7 @@
             <div class="item">
               <div><img src="" alt="" /></div>
               <div>
-                <span class="unit">kd </span
-                ><span class="price"> item.price </span>
+                <span class="unit">kd </span><span class="price"> item.price </span>
               </div>
               <div class="title">item.goods_name</div>
 
@@ -500,8 +426,7 @@
                   <img src="../assets/images/redstart.png" alt="" />
                 </span>
                 <span class="wuj">
-                  <img src="../assets/images/cel_shoucan.png" alt=""
-                /></span>
+                  <img src="../assets/images/cel_shoucan.png" alt="" /></span>
               </div>
 
               <div class="button">立即购买</div>
@@ -546,7 +471,7 @@ import httpApi from "@/http/index.js";
 import Pagination from "./pagination";
 export default {
   components: { Pagination },
-  data() {
+  data () {
     return {
       category: [], //分列列表
       ProductInsideLeft: "", //专区分类左内页
@@ -555,7 +480,7 @@ export default {
       isactive: true,
       top_category: [], //导航，
       banner: [], //轮播贴图
-      section:[], //分区专块
+      section: [], //分区专块
       currentIndex: 0, //当前默认选中
       swiperOptions: {
         // effect: "cube",
@@ -565,25 +490,28 @@ export default {
 
 
       //分页数据
-      page: 1, // 当前页码
-      limit: 20, // 每页数量
-      curPage:1,
-      pageSize:10,
+      total: 0,
+      curPage: 1,
+      pageSize: 10,
     };
   },
-  
-  mounted() {
+  computed: {
+    limitList () {
+      return this.category.slice(this.pageSize * (this.curPage - 1), this.pageSize * this.curPage)
+    }
+  },
+  mounted () {
     this.init();
   },
-  created() {
+  created () {
     this.changeMenu(1);
     this.updateMenu(3);
   },
   methods: {
-    pageChange(page){
-      this.curPage=page
+    pageChange (page) {
+      this.curPage = page
     },
-    changeMenu(menu) {
+    changeMenu (menu) {
       // console.log(menu);
 
       this.menu = menu;
@@ -602,7 +530,7 @@ export default {
         this.ProductInsideLeft = res.data.data;
       });
     },
-    updateMenu(menu) {
+    updateMenu (menu) {
       this.menu = menu;
       if (this.menu == 3) {
         this.isactive = true;
@@ -619,11 +547,11 @@ export default {
         this.ProductInsideRight = res.data.data;
       });
     },
-    handleClick(index) {
+    handleClick (index) {
       this.currentIndex = index;
     },
     //跳转
-    jumpDetail(val1) {
+    jumpDetail (val1) {
       console.log("val1", val1);
       this.$router.push({
         path: "/detail",
@@ -632,13 +560,13 @@ export default {
         },
       });
     },
-    init() {
+    init () {
       httpApi.homepageApi.queryPreProducts().then((res) => {
         console.log("分列列表", res);
         this.bar = res.data.data;
         this.banner = res.data.data.banner;
         this.top_category = res.data.data.top_category;
-        this.section = res.data.data.section 
+        this.section = res.data.data.section
         let cid = []
         this.section.forEach(value => {
           cid.push(value.id)
@@ -656,6 +584,7 @@ export default {
         .then((res) => {
           console.log("专区分类内页cate", res);
           this.category = res.data.data;
+          this.total = this.category.length
         });
     },
   },
@@ -1001,6 +930,15 @@ export default {
           border-radius: 0px 0px 0px 0px;
           opacity: 1;
         }
+        .pagination {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+          /deep/ .el-input {
+            margin-left: 0;
+            margin-top: 0;
+          }
+        }
         .box {
           display: flex;
           flex-direction: row;
@@ -1013,7 +951,6 @@ export default {
             margin-right: 46px;
             margin-top: 40px;
             width: 193px;
-            height: 328px;
             background: #ffffff;
             border-radius: 0px 0px 0px 0px;
             opacity: 1;
@@ -1040,9 +977,9 @@ export default {
               // -webkit-background-clip: text;
               // -webkit-text-fill-color: transparent;
             }
-            img {
+            /deep/ .el-image {
               width: 193px;
-              height: 131px;
+              height: 193px;
             }
             .center {
               width: 193px;
