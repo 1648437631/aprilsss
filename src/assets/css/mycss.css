@@ -1,0 +1,131 @@
+/* header */
+.el-col a {
+  margin: 15px;
+  font-size: 14px;
+  text-decoration: none;
+}
+.el-image {
+  width: 10px;
+  height: 10px;
+  margin-top: 30px;
+}
+
+/* .el-input {
+  width: 60%;
+  margin-left: 223px;
+  margin-top: 50px;
+} */
+
+/* header */
+
+
+
+/* login */
+.el-radio{
+  margin-left: 200px;
+}
+.el-radio a{
+  text-decoration: none;
+ 
+}
+
+/* login */
+/* homeview */
+.el-main .nav{
+padding:10px;
+}
+/* homeview */
+/* Register */
+
+
+/* Register */
+
+
+/* info */
+.el-form{
+  margin:0 auto;
+  width:1200px
+}
+
+
+/* info */
+/* newarrival */
+
+.del {
+  margin-left: 0.5em;
+  color: #b0b0b0;
+  text-decoration: line-through;
+}
+.el-col{
+  margin-top: 20px;
+}
+.title{
+  font-size:20px;
+color:red
+}
+.none{
+  font-size:20px;
+color:black
+}
+.more{
+  margin-left: 250px;
+}
+.tomore{
+  font-size: 12px;
+  margin-left: 950px;
+}
+
+.el-card .button{
+  width:280px;
+  height:40px;
+  background-color: #ed1b35;
+  border-radius:2%;
+ margin-left:-20px;
+ border:1px solid;
+}
+.el-card .clear{
+  margin-left:-10px;
+  width:250px;
+  height:40px;
+ border:1px solid red;
+}
+
+
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+/* newarrival */
+
+/* footer */
+/* .text {
+  margin-left: 500px;
+  color: #ed1b35;
+} */
+.footer_title{
+  margin-left:47px;
+}
+
+.el-footer .el-col div{
+  margin-top:10px;
+  margin-left: 10px;
+}
+
+
+/* footer */
+
+.area-sort {
+    list-style: none;
+    display: flex;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .area-sort-inner {
+    margin-left: 80px;
+    height: 300px;
+  }
+  .area-sort li {
+    margin-left: 90px;
+    margin-top: 10px;
+    flex-direction: row;
+  }

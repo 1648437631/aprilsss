@@ -1,0 +1,40 @@
+/* 首页 */
+.el-header {
+  width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-main {
+  /* overflow: hidden; */
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 180px;
+    text-align: center;
+    line-height: 160px;
+  }
+  .el-footer {
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 180px;
+    text-align: center;
+    line-height: 60px;
+    /* overflow: hidden; */
+  }
+  body > .el-container {
+    width: 1200px;
+    margin-bottom: 40px;
+  }
+  .el-input {
+    width: 50%;
+    margin-left: 223px;
+    margin-top: 50px;
+  }
+  .el-form-item{
+    margin-left: 220px;
+  }
+  .el-image{
+    width:180px;
+    height:55px;
+  }
