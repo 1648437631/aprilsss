@@ -1,8 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-
 import i18n from '@/lang'
-import BaseUrl from '@/http/BaseUrl'
 import httpError from './httpError'
 import serveError from './serveError'
 const CancelToken = axios.CancelToken
@@ -10,7 +8,7 @@ const CancelToken = axios.CancelToken
 // 创建axios实例
 const instance = axios.create({
   timeout: 60000,
-  baseURL: BaseUrl.BMDURL,
+  baseURL: process.env.VUE_APP_BASE_URL,
   headers: {
     'Authorization': `Bearer ${localStorage.getItem('token') || ''}`,
     'Accept-Language': localStorage.getItem('language') || 'zh',

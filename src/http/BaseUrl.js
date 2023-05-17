@@ -1,9 +1,10 @@
 const URL_ENV = {
   TEST: {
-    BMDURL: "https://test2.alkuwaityastore.com",
+    BMDURL: process.env.VUE_APP_BASE_URL,
   },
   HOST: {
-    BMDURL: "https://q8store.q8gz.com",},
+    BMDURL: process.env.VUE_APP_BASE_URL
+  },
 };
 
 export default URL_ENV.TEST;
