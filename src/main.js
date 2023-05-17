@@ -13,6 +13,12 @@ import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 import i18n from '@/lang' 
 
+
+
+
+import scroll from 'vue-seamless-scroll'
+Vue.use(scroll)
+
 Vue.use(ElementUI,{
 	i18n:(key,value)=>i18n.t(key,value)
 })

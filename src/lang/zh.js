@@ -67,6 +67,7 @@ export default{
 			"more27":"下载应用程序",
 			"more28":"Alkuwaitiya商店保留所有版权 @ 2022",
 			"more29":"最受欢迎的类别",
+			"more30":"商店",
 		},
 		'home':{
 			
@@ -152,6 +153,12 @@ export default{
 			"more69":"榜",
 			"more70":"家具专场",
 			"more71":"厨具专场",
+			"more72":"特卖价",
+			"more73":"新品上新价",
+			"more74":"下架倒计时",
+			"more75":"限量抢，抢完恢复",
+			"more76":"新品上新价 ",
+			"more77":"好物特卖 ",
 
 		},
 		'list':{

@@ -9,7 +9,7 @@ import customEN from './en'
 import customAR from './ar'
 Vue.use(VueI18n) // 完成全局注册
 export default new VueI18n({
-  locale: localStorage.getItem('language')||'en',
+  locale: localStorage.getItem('language')||'zh',
 //   token.get('accept-language') ||
     messages:{
         zh:{

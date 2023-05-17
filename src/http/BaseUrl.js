@@ -6,4 +6,4 @@ const URL_ENV = {
     BMDURL: "https://q8store.q8gz.com",},
 };
 
-export default URL_ENV.HOST;
+export default URL_ENV.TEST;

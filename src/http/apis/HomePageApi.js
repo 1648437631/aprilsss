@@ -2,16 +2,22 @@ import myaxios from "../Myaxios";
 import BaseUrl from "../BaseUrl";
 const BMDURL = BaseUrl.BMDURL;
 const HOST = BaseUrl.HOST;
+import { post } from '@/utils/request'
 const homepageApi = {
+
+  queryGuessLike(params){
+    let url = BMDURL + "/api/product/getRelatedProduct";
+    return myaxios.post(url,params)
+  },
   /**GET获取首页数据接口
    *接口 /api/getFirstPageData
    *参数 page limit
    */
-  queryPreProducts(params) {
+  queryPreProducts() {
     // let data = params
     let url = BMDURL + "/api/getFirstPageData";
     // console.log('dhdh',post(url))
-    return myaxios.get(url, params);
+    return myaxios.get(url);
   },
 
   /**GET全部一二级分类
@@ -55,16 +61,16 @@ const homepageApi = {
     return myaxios.post(url, data);
   },
   
+  // 更改先换cid 
   /**Post 专区分类内页
    *接口 /api/getSectionCategoryInside
    *参数 multipart/form-data
    */
-  querySectionCategoryInside(params) {
-
-    let data = params
-    let url = BMDURL + "/api/getSectionCategoryInside";
-    return myaxios.post(url, data);
-  },
+queryCategoryInside(params){
+let data = params
+let url = BMDURL + "/api/getSectionCategoryInside";
+return myaxios.post(url, data);
+},
 
   /**Post 专区轮播内页
    *接口 /api/section/getSectionBanner

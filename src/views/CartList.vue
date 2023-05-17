@@ -49,7 +49,7 @@
               </div>
               <!-- 商品信息 -->
               <div class="goods-content">
-                <img src="item.productInfo.image" alt="" />
+                <img :src="item.productInfo.image" alt="" />
                 <div class="goods-info">
                   <p>{{ item.productInfo.store_name }}</p>
                   <span>{{ item.productInfo.attrInfo.barcode }}</span>
@@ -94,7 +94,8 @@
             合计：
             <p>KD:{{ checkedPrice }}</p>
           </div>
-          <div class="foot" @click="goOrder(cartId, local_addr_id, addr_id)">
+          <!-- <div class="foot" @click="goOrder(cartId, local_addr_id, addr_id)"> -->
+            <div class="foot" @click="goOrder(cartId)">
             结算{{ checkedNum }}
           </div>
         </div>
@@ -117,12 +118,9 @@ export default {
       cartId: "",
       province_id: "",
       id: "",
-      local_addr_id: "",
-      addr_id: "",
-      transport:[] //交通方式
-
-
-
+      // local_addr_id: "",
+      // addr_id: "",
+      transport: [], //交通方式
     };
   },
   methods: {
@@ -132,8 +130,8 @@ export default {
         path: "/order/confirm",
         query: {
           cartId: this.cartdd,
-          local_addr_id: this.province_id,
-          addr_id: this.id,
+          // local_addr_id: this.province_id,
+          // addr_id: this.id,
         },
       });
     },
@@ -174,8 +172,6 @@ export default {
       console.log("选中的商品id数组", arr);
       console.log(this.ids);
 
-
-      
       let arrid = [];
       this.ids.forEach((value) => {
         if (value.checked) {
@@ -215,50 +211,28 @@ export default {
       httpApi.cartApi
         .queryCartList({ id: this.$route.query.id })
         .then((res) => {
-          let cartlist = res.data.data.valid;
-          cartlist.forEach((val) => {
+          this.cartlist = res.data.data.valid;
+          this.cartlist.forEach((val) => {
             val.checked = true;
             if (!val.checked) this.allSelect = false;
           });
-          this.cartlist = cartlist;
           this.goPicked();
-          console.log("购物车页:", cartlist);
-
-         let transport = []
-         cartlist.forEach((value)=>{
-          transport.push(value.productInfo.transport_mode)
-          this.transport = transport
-        })
-         console.log(transport);
-
-         
+          let transport = [];
+          this.cartlist.forEach((value) => {
+            transport.push(value.productInfo.transport_mode);
+            this.transport = transport;
+          });
+          console.log(transport);
         });
-      // 获取地址信息
-      httpApi.addressApi.queryAddress().then((res) => {
-        // console.log("地址信息:", res);
-        let addressInfo = res.data.data.data;
-        this.addressInfo = addressInfo;
 
-        console.log("res", addressInfo);
-        addressInfo.forEach((value) => {
-          if (value.is_default == 1) {
-            this.province_id = value.province_id;
-            this.id = value.id;
-          }
-          // console.log(this.province_id);
-          // console.log(this.id);
-        });
-      });
     },
   },
   created() {
     //获取购物车列表
     this.init();
   },
-  mounted () {
-
-  },
- computed: {
+  mounted() {},
+  computed: {
     // 计算出选中的数量
 
     checkedNum() {

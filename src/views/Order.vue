@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       title: "",
-      subtitle:"",
+      subtitle: "",
       tip: "",
     };
   },
@@ -33,13 +33,18 @@ export default {
     } else if (path == "/order/pay") {
       this.title = "个人中心/我的订单/订单支付";
       this.tip = "请认真填写地址";
-    }else if(path == "/order/confirm"){
+    } else if (path == "/order/confirm") {
       this.title = "个人中心/我的订单/送货上门";
       this.tip = "请认真确认订单";
-    } else if(path == "/order/address"){
-      this.title = "确认收货地址  ";
-      this.subtitle = "管理收货地址";
-    } 
+    } else if (path == "/order/list") {
+      this.title = "个人中心/我的订单";
+    } else if (path == "/order/address") {
+      this.title = "个人中心/我的订单/确认收货地址  ";
+    } else if (path == "/order/repair") {
+      this.title = "个人中心/维修订单";
+    } else if (path == "/order/total") {
+      this.title = "个人中心/我的订单";
+    }
   },
 };
 </script>

@@ -2,27 +2,46 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "@/store";
 import HomeView from "../views/HomeView.vue";
+import NewArrival from "../views/NewArrival.vue";
+import CategoryInside from "../views/CategoryInside.vue";
 import Login from "../views/Login.vue";
+
 import Register from "../views/Register.vue";
 import Client from "../views/user/Client.vue";
 import Info from "../views/user/Info.vue";
 import Cart from "../views/Cart.vue";
-import Test from "../views/pagination.vue";
+import Test from "../views/Test.vue";
 import Address from "../views/Address.vue";
 import Order from "../views/Order.vue";
+import WaitPick from "../views/WaitPick.vue";
 import Logistic from "../views/Logistic.vue";
 
-import HomeChat from "../views/home/HomeChat.vue";
-import HomeSearch from "../views/home/HomeSearch.vue";
-import HomeLike from "../views/home/HomeLike.vue";
+import HomeSearch from "../views/HomeSearch.vue";
+
 import Detail from "../views/Detail.vue";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
+    // redirect:'/login',
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/waitpick",
+    name: "waitpick",
+    component: WaitPick,
+  },
+  {
+    path: "/newarrival",
+    name: "newarrival",
+    component: NewArrival,
+  },
+  {
+    path: "/categoryinside",
+    name: "categoryinside",
+    component: CategoryInside,
   },
   {
     path: "/detail",
@@ -44,28 +63,22 @@ const routes = [
     path: "/user/info",
     name: "info",
     component: Info,
+    meta: {
+      role: true
+    }
   },
   {
     path: "/register",
     name: "register",
     component: Register,
   },
-  {
-    path: "/homechat",
-    name: "homechat",
-    component: HomeChat,
-  },
 
   {
-    path: "/homesearch",
+    path: "/search",
     name: "homesearch",
     component: HomeSearch,
   },
-  {
-    path: "/homelike",
-    name: "homelike",
-    component: HomeLike,
-  },
+
   {
     path: "/logistic",
     name: "logistic",
@@ -75,6 +88,9 @@ const routes = [
     path: "/address",
     name: "address",
     component: Address,
+    meta: {
+      role: true
+    }
   },
   {
     path: "/test",
@@ -84,10 +100,10 @@ const routes = [
   {
     path: "/cart",
     name: "cart",
-    meta: {
-      keepAlive: true,
-    },
     component: Cart,
+    meta: {
+      role: true
+    },
     children: [
       {
         path: "no-data",
@@ -97,6 +113,9 @@ const routes = [
       {
         path: "list",
         name: "list",
+        meta: {
+          role: true
+        },
         component: () => import("../views/CartList.vue"),
       },
     ],
@@ -106,18 +125,25 @@ const routes = [
     name: "order",
     meta: {
       keepAlive: true,
+      role: true
     },
     component: Order,
     children: [
       {
+        path: "total",
+        name: "total",
+        component: () => import("../views/Total.vue"),
+      },
+
+      {
+        path: "repair",
+        name: "order-repair",
+        component: () => import("../views/OrderRepair.vue"),
+      },
+      {
         path: "address",
         name: "order-address",
         component: () => import("../views/OrderAddress.vue"),
-      },
-      {
-        path: "list",
-        name: "order-list",
-        component: () => import("../views/OrderList.vue"),
       },
       {
         path: "pay",
@@ -160,12 +186,10 @@ const router = new VueRouter({
 
 // 添加全局前置守卫
 
-// router.beforeEach((to,from,next)=>{
-//   console.log(to) //
-//   if(to.path =='/user/login' || store.state.account){
-//     next()
-//   }
-// else{
-//   router.push('user/register')
-// }})
+router.beforeEach(async (to, from, next) => {
+  try {
+    if (to.meta.role) { await store.dispatch('initVuex') }
+    next()
+  } catch (err) { }
+})
 export default router;

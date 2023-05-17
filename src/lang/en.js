@@ -35,7 +35,7 @@ export default{
 			"more30":"Kuwait",
 			"more31":"Personal Info",
 			"more32":"Message",
-			"more33":"Product category"
+			"more33":"Classfication"
 			
 		},
 		'footer':{
@@ -69,6 +69,7 @@ export default{
 			"more27":"Download Application",
 			"more28":"Alkuwaitiya Store reserves all copyright @ 2022",
 			"more29":"The most popular category",
+			"more30":"Store",
 		},
 		'home':{
 			"seckillTit":"Product seconds",
@@ -145,13 +146,19 @@ export default{
 			"more62":"No more data...",
 			"more63":"This function is not open yet.",
 			"more64":"Top Searches",
-			"more65":"hottest deserve",
+			"more65":"Worth",
 			"more66":"best seller",
 			"more67":"hot seller",
 			"more68":"hot TOP1",
 			"more69":'List',
 			"more70":"furniture scene",
 			"more71":"Kitchen scene",
+			"more72":"special sale",
+			"more73":"New Product Price",
+			"more74":"Count Down",
+			"more75":"Limit Quantity,After Renew Price",
+			"more76":"新品上新价 ",
+			"more77":"好物特卖 ",
 		},
 		'list':{
 			'more1':'Buy Now',

@@ -14,6 +14,7 @@ instance.interceptors.request.use(
 //   console.log("消息：",store);
  config.headers['Accept-Language'] = i18n.locale 
  config.headers['Accept-Region'] = 'Kuwait'
+  // config.headers['Content-Type']='application/x-www-form-urlencoded;charset=utf-8'
  
  return config
 

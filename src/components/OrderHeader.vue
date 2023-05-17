@@ -1,11 +1,10 @@
 <template>
   <div class="order-header">
-    <div class="container clearfix">
-      <div class="title">
-        <h2>{{ title }}<slot name="tip"></slot></h2>
-        <h2 class="subtitle">{{ subtitle }}</h2>
-      </div>
+    <div class="title">
+      <h2>{{ title }}</h2>
+      <h2 class="subtitle">{{ subtitle }}</h2>
     </div>
+    <!-- <div class="line"></div> -->
   </div>
 </template>
 <script>
@@ -19,31 +18,48 @@ export default {
 </script>
 <style lang="less">
 .order-header {
-  padding: 30px 0;
   width: 1200px;
   margin: 0 auto;
+
   .title {
-//  margin-left:20px;
-    margin-top: 54px;
-    font-size: 16px;
-    display: flex;
-    justify-content: space-between;
+    background: #f9fafc;
+    width: 1200px;
+    height: 22px;
     h2 {
-      // margin-left:1000px;
+      width: 100%;
+      height: 22px;
+      font-size: 16px;
+      font-family: PingFang SC-Bold, PingFang SC;
+      font-weight: bold;
+      color: #333333;
       font-size: 16px;
       color: #333333;
-    } 
-    .subtitle{
+    }
+    .subtitle {
+      width: 300px;
+      height: 22px;
       font-size: 12px;
-      color:#5A77CE 
+      margin-left: 966px;
+      font-family: PingFang SC-Bold, PingFang SC;
+      font-weight: bold;
+      color: #5a77ce;
+      line-height: 17px;
+      text-align: center;
     }
     span {
       font-size: 14px;
-      margin-left: 17px;
+      margin-top: 10px;
       color: #999999;
       font-weight: 200;
     }
   }
+  // .line {
+  //   margin-bottom: 10px;
+  //   width: 1179px;
+  //   height: 0px;
+  //   opacity: 1;
+  //   border: 1px solid rgba(112, 112, 112, 0.13);
+  // }
   .username {
     float: right;
     a {
